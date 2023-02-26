@@ -1,6 +1,6 @@
 import { diffDates, diffToHtml } from "./datecalc.js"; // 1
 import { formatError } from "./utils.js"; // 2
-import { runShowRemaining } from "./timer.js"
+import { runShowTimer } from "./timer.js"
 
 const dateCalcForm = document.getElementById("datecalc");
 const dateCalcResult = document.getElementById("datecalc__result");
@@ -13,7 +13,7 @@ function handleCalcDates(event) {
 	dateCalcResult.innerHTML = "";
 	event.preventDefault();
 	firstDate = firstDate.value, secondDate = secondDate.value;
-	runShowRemaining(firstDate, secondDate)
+	runShowTimer(firstDate, secondDate)
 	if (firstDate && secondDate) {
 		const diff = diffDates(firstDate, secondDate); // 3
 		// console.log(diff);
