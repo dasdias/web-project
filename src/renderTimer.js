@@ -1,26 +1,39 @@
 export function renderTimer({ days, hours, minutes, seconds }) {
-  const timerElem = document.querySelector('#timer');
-  timerElem.innerHTML = "";
-  const elems = `
+	const timerElem = document.querySelector('.timer-output');
+	timerElem.innerHTML = "";
+	let elemDays = `
+		<div class="countdown-number">
+			<span class="days countdown-time">${days}</span>
+			<span class="countdown-text">Days</span>
+		</div>	
+	`;
+	let elemHours = `
+		<div class="countdown-number">
+			<span class="days countdown-time">${hours}</span>
+			<span class="countdown-text">Hours</span>
+		</div>	
+	`;
+	let elemMinutes = `
+		<div class="countdown-number">
+			<span class="days countdown-time">${minutes}</span>
+			<span class="countdown-text">Minutes</span>
+		</div>	
+	`;
+	let elemSeconds = `
+		<div class="countdown-number">
+			<span class="days countdown-time">${seconds}</span>
+			<span class="countdown-text">Seconds</span>
+		</div>	
+	`;
+
+	const elems = `
     <div class="countdown">
-      <div class="countdown-number">
-        <span class="days countdown-time">${days}</span>
-        <span class="countdown-text">Days</span>
-      </div>
-      <div class="countdown-number">
-        <span class="hours countdown-time">${hours}</span>
-        <span class="countdown-text">Hours</span>
-      </div>
-      <div class="countdown-number">
-        <span class="minutes countdown-time">${minutes}</span>
-        <span class="countdown-text">Minutes</span>
-      </div>
-      <div class="countdown-number">
-        <span class="seconds countdown-time">${seconds}</span>
-        <span class="countdown-text">Seconds</span>
-      </div>
+      ${days ? elemDays : ""}
+      ${hours ? elemHours : ""}
+      ${minutes ? elemMinutes : ""}
+      ${seconds ? elemSeconds : ""}
     </div>
 `
-  timerElem.insertAdjacentHTML("afterbegin", elems)
+	timerElem.insertAdjacentHTML("afterbegin", elems)
 
 }

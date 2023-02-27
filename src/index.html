@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link rel="stylesheet" href="./css/style.css">
 	<script src="./main.js" type="module"></script>
 </head>
 
@@ -24,7 +25,19 @@
 		<p id="datecalc__result"></p>
 	</form>
 	<br>
-	<div id="timer"></div>
+	<hr>
+	<form class="timer-form">
+		<h3>Таймер</h3>
+		<label>
+			<strong>Введите время:</strong>
+			<input class="timer-form__input" type="time" name="timer" title="Задайте таймер в миллесекундах" placeholder="Введите число в миллесекундах" />
+		</label>
+		<label>
+			<button class="timer-form__btn-start" type="submit">Включить таймер</button>
+			<button class="timer-form__btn-stop">Остановить таймер</button>
+			<p class="timer-form__result"></p>
+	</form>
+	<div class="timer-output"></div>
 
 
 </body>

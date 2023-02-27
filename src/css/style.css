@@ -1,0 +1,45 @@
+.timer-form {}
+
+.timer-form__input {}
+
+.timer-form__btn-start {}
+
+.timer-form__btn-stop {}
+
+.timer-form__result {
+	color: tomato;
+	font-weight: 700;
+}
+
+.timer-output {}
+
+/* timer */
+
+.countdown {
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+.countdown-number {
+	padding: 10px;
+	border-radius: 3px;
+	background: #1ea540;
+	display: inline-block;
+}
+
+.countdown-time {
+	padding: 15px;
+	border-radius: 3px;
+	background: #008111;
+	display: inline-block;
+}
+
+.countdown-text {
+	display: block;
+	padding-top: 5px;
+	font-size: 16px;
+}
