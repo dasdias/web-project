@@ -37,7 +37,7 @@ timerForm.addEventListener("submit", (e) => {
 		timerFormResult.innerHTML = "Введите время";
 		return
 	}
-	runShowTimer(timerValue,)
+	runShowTimer(timerValue)
 })
 
 timerFormBtnStop.addEventListener("click", (e) => {

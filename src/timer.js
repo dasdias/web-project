@@ -72,7 +72,7 @@ function updateClock() {
 	}
 }
 
-updateClock();
+// updateClock();
 timeinterval = setInterval(updateClock, 1000);
 
 export function stopTimer() {
