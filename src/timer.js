@@ -1,15 +1,21 @@
 import { DateTime, Duration } from "./libs/luxon.js";
 import { renderTimer } from "./renderTimer.js";
+import './libs/howler.min.js';
 
 let timeinterval;
 let totalTimerMs;
-// let timerMsc = 0;
-// let endtime = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000); // for endless timer
-// let endtime = new Date(Date.parse(new Date()) + 1 * 60 * 1000); // for endless timer
-// https://denis-creative.com/jstimer/
+let selectorRender = '.timer-output';
 
-export function diffDateTimer(firstDate, secondDate) {
+var sound = new Howl({
+	src: ['./sound/alarm-beep.mp3']
+});
+
+
+
+export function diffDateTimer(firstDate, secondDate, selector) {
 	clearInterval(timeinterval);
+	document.querySelector(selectorRender).innerHTML = '';
+	selectorRender = selector;
 
 	firstDate = DateTime.fromISO(firstDate);
 	secondDate = DateTime.fromISO(secondDate);
@@ -17,36 +23,29 @@ export function diffDateTimer(firstDate, secondDate) {
 	if (firstDate > secondDate)
 		secondDate = [firstDate, firstDate = secondDate][0];
 
-
 	totalTimerMs = secondDate.diff(firstDate);
-	totalTimerMs.toObject(); //=> { months: 1 }
-	console.log(totalTimerMs);
+	totalTimerMs.toObject();
+	updateClock()
 	timeinterval = setInterval(updateClock, 1000);
 }
 
-export function runShowTimer(time) {
+export function runShowTimer(time, selector) {
 	clearInterval(timeinterval);
+	document.querySelector(selectorRender).innerHTML = '';
+	selectorRender = selector;
 	const arrTime = time.split(":");
-	// console.log(arrTime);
 	let dur = Duration.fromObject({ hours: arrTime[0], minutes: arrTime[1] });
 	let timerMsc = dur.as('seconds') * 1000;
-	// console.log(timerMsc);
 	totalTimerMs = timerMsc
-
-
+	updateClock()
 	timeinterval = setInterval(updateClock, 1000);
-
-
 }
 
 function getTimeRemaining() {
-	// let t = totalTimerMs;
-	// let t = Date.parse(endtime) - Date.parse(new Date());
 	let seconds = Math.floor((totalTimerMs / 1000) % 60);
 	let minutes = Math.floor((totalTimerMs / 1000 / 60) % 60);
 	let hours = Math.floor((totalTimerMs / (1000 * 60 * 60)) % 24);
 	let days = Math.floor(totalTimerMs / (1000 * 60 * 60 * 24));
-	// console.log(t);
 	totalTimerMs = totalTimerMs - 1000;
 	return {
 		'total': totalTimerMs,
@@ -60,22 +59,16 @@ function getTimeRemaining() {
 function updateClock() {
 	const timerElem = document.querySelector('#timer');
 	let t = getTimeRemaining();
-	// console.log(t)
-	renderTimer(t);
-	// days = t.days;
-	// hours = ('0' + t.hours).slice(-2);
-	// minutes = ('0' + t.minutes).slice(-2);
-	// seconds = ('0' + t.seconds).slice(-2);
+	renderTimer(t, selectorRender);
 
 	if (t.total <= 0) {
-		stopTimer();
+		sound.play();
+		stopTimer('.timer-output');
 	}
 }
 
-// updateClock();
-timeinterval = setInterval(updateClock, 1000);
-
-export function stopTimer() {
+export function stopTimer(selector) {
 	clearInterval(timeinterval);
-	renderTimer({})
+	const timerElem = document.querySelector(selector);
+	timerElem.innerHTML = '';
 }
