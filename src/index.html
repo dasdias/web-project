@@ -6,23 +6,48 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script src="./main.js" type="module"></script>
+	<!-- <link rel="stylesheet" href="./css/style.css"> -->
 </head>
 
 <body>
-	<form id="datecalc">
-		<h3>Калькулятор дат</h3>
-		<label>
-			<strong>Первая дата:</strong>
-			<input type="date" name="firstDate" />
-		</label>
-		<label>
-			<strong>Вторая дата:</strong>
-			<input type="date" name="secondDate" />
-		</label>
-		<button type="submit">Расчитать промежуток</button>
-		<p id="datecalc__result"></p>
-	</form>
+	<div class="container">
+		<div class="tabs">
+			<div class="tabs__header">
+				<div data-title="calc" class="tabs__title tabs__title_active">Калькулятор дат</div>
+				<div data-title="taimer" class="tabs__title">Таймер</div>
+			</div>
+			<div data-body="calc" class="tabs__body tabs__body_active">
+				<form id="datecalc">
+					<h3>Калькулятор дат</h3>
+					<label>
+						<strong>Первая дата:</strong>
+						<input type="date" name="firstDate" />
+					</label>
+					<label>
+						<strong>Вторая дата:</strong>
+						<input type="date" name="secondDate" />
+					</label>
+					<button type="submit">Расчитать промежуток</button>
+					<p id="datecalc__result"></p>
+				</form>
+				<div class="datecalc__output"></div>
+			</div>
+			<div data-body="taimer" class="tabs__body">
+				<form class="timer-form">
+					<h3>Таймер</h3>
+					<label>
+						<strong>Введите время:</strong>
+						<input class="timer-form__input" type="time" name="timer" title="Задайте таймер в миллесекундах" placeholder="Введите число в миллесекундах" />
+					</label>
+					<label>
+						<button class="timer-form__btn-start" type="submit">Включить таймер</button>
+						<button class="timer-form__btn-stop">Остановить таймер</button>
+						<p class="timer-form__result"></p>
+				</form>
+				<div class="timer-output"></div>
+			</div>
+		</div>
+	</div>
 
 
 </body>
