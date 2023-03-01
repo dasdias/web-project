@@ -1,13 +1,14 @@
 import { DateTime, Duration } from "./libs/luxon.js";
 import { renderTimer } from "./renderTimer.js";
 import './libs/howler.min.js';
+import audioFile from './sound/alarm-beep.mp3';
 
 let timeinterval;
 let totalTimerMs;
 let selectorRender = '.timer-output';
 
 var sound = new Howl({
-	src: ['./sound/alarm-beep.mp3']
+  src: [audioFile]
 });
 
 
